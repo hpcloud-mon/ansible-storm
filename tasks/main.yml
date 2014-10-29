@@ -20,7 +20,7 @@
   file: path={{storm_root_dir}}/current state=link src={{storm_root_dir}}/apache-storm-{{storm_version}}
 
 - name: Configure storm.yaml
-  template: dest="{{storm_root_dir}}/{{storm_version}}/conf/storm.yaml" owner={{storm_user}} group={{storm_group}} mode=640 src=storm.yaml.j2
+  template: dest="{{storm_root_dir}}/apache-storm-{{storm_version}}/conf/storm.yaml" owner={{storm_user}} group={{storm_group}} mode=640 src=storm.yaml.j2
   notify:
     - Restart Nimbus
     - Restart Supervisor
