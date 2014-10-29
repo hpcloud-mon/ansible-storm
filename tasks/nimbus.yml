@@ -1,0 +1,11 @@
+# Configure and start nimbus as well as the UI
+
+- name: Setup nimbus upstart script
+  copy: dest=/etc/init/nimbus.conf owner=root group=root mode=644 src=nimbus.conf
+  notify:
+    - Restart Nimbus
+
+- name: Setup UI upstart script
+  copy: dest=/etc/init/stormui.conf owner=root group=root mode=644 src=stormui.conf
+  notify:
+    - Restart UI

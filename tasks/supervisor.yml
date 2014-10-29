@@ -1,0 +1,4 @@
+- name: Setup supervisor upstart script
+  copy: dest=/etc/init/supervisor.conf owner=root group=root mode=644 src=supervisor.conf
+  notify:
+    - Restart Supervisor

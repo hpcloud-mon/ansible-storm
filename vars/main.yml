@@ -1,0 +1,4 @@
+---
+storm_root_dir: /opt/storm
+storm_group: storm
+storm_user: storm

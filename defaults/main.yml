@@ -1,0 +1,7 @@
+---
+apache_mirror: http://apache.mirrors.tds.net
+storm_version: 0.9.1-incubating
+storm_ui_port: 8088
+storm_nimbus_enabled: false
+storm_supervisor_enabled: false
+
