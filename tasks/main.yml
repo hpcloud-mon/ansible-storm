@@ -19,8 +19,11 @@
 - name: Link current version
   file: path={{storm_root_dir}}/current state=link src={{storm_root_dir}}/apache-storm-{{storm_version}}
 
+- name: Create Storm log directory
+  file: path={{storm_root_dir}}/current/logs state=directory owner={{storm_user}} group={{storm_group}} mode=775
+
 - name: Configure storm.yaml
-  template: dest="{{storm_root_dir}}/apache-storm-{{storm_version}}/conf/storm.yaml" owner={{storm_user}} group={{storm_group}} mode=640 src=storm.yaml.j2
+  template: dest="{{storm_root_dir}}/apache-storm-{{storm_version}}/conf/storm.yaml" owner={{storm_user}} group={{storm_group}} mode=644 src=storm.yaml.j2
   notify:
     - Restart Nimbus
     - Restart Supervisor
