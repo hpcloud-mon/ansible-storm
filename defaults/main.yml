@@ -4,4 +4,4 @@ storm_local_dir: /var/storm
 storm_nimbus_enabled: false
 storm_supervisor_enabled: false
 storm_ui_port: 8088
-storm_version: 0.9.1-incubating
+storm_version: 0.9.2-incubating
