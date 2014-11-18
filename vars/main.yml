@@ -1,4 +1,10 @@
 ---
+nimbus_systemd_service: /etc/systemd/system/storm-nimbus.service
+nimbus_upstart_conf: /etc/init/storm-nimbus.conf
 storm_root_dir: /opt/storm
 storm_group: storm
+stormui_systemd_service: /etc/systemd/system/storm-ui.service
+stormui_upstart_conf: /etc/init/storm-ui.conf
+supervisor_systemd_service: /etc/systemd/system/storm-supervisor.service
+supervisor_upstart_conf: /etc/init/storm-supervisor.conf
 storm_user: storm

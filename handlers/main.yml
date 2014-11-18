@@ -1,12 +1,12 @@
 ---
 - name: Restart Nimbus
-  service: name=nimbus state=restarted enabled=yes
+  service: name=storm-nimbus state=restarted enabled=yes
   when: storm_nimbus_enabled
 
 - name: Restart Supervisor
-  service: name=supervisor state=restarted enabled=yes
+  service: name=storm-supervisor state=restarted enabled=yes
   when: storm_supervisor_enabled
 
 - name: Restart UI
-  service: name=stormui state=restarted enabled=yes
+  service: name=storm-ui state=restarted enabled=yes
   when: storm_nimbus_enabled

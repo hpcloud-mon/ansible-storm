@@ -1,11 +1,25 @@
 # Configure and start nimbus as well as the UI
 
 - name: Setup nimbus upstart script
-  copy: dest=/etc/init/nimbus.conf owner=root group=root mode=644 src=nimbus.conf
+  copy: dest={{nimbus_upstart_conf}} owner=root group=root mode=644 src=storm-nimbus.conf
   notify:
     - Restart Nimbus
+  when: ansible_distribution_release == 'trusty'
+
+- name: Setup nimbus systemd script
+  copy: dest={{nimbus_systemd_service}} owner=root group=root mode=644 src=storm-nimbus.service
+  notify:
+    - Restart Nimbus
+  when: ansible_distribution_release != 'trusty'
 
 - name: Setup UI upstart script
-  copy: dest=/etc/init/stormui.conf owner=root group=root mode=644 src=stormui.conf
+  copy: dest={{stormui_upstart_conf}} owner=root group=root mode=644 src=storm-ui.conf
   notify:
     - Restart UI
+  when: ansible_distribution_release == 'trusty'
+
+- name: Setup UI systemd script
+  copy: dest={{stormui_systemd_service}} owner=root group=root mode=644 src=storm-ui.service
+  notify:
+    - Restart UI
+  when: ansible_distribution_release != 'trusty'

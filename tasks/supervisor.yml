@@ -1,4 +1,12 @@
 - name: Setup supervisor upstart script
-  copy: dest=/etc/init/supervisor.conf owner=root group=root mode=644 src=supervisor.conf
+  copy: dest={{supervisor_upstart_conf}} owner=root group=root mode=644 src=storm-supervisor.conf
   notify:
     - Restart Supervisor
+  when: ansible_distribution_release == 'trusty'
+
+- name: Setup supervisor systemd script
+  copy: dest={{supervisor_systemd_service}} owner=root group=root mode=644 src=storm-supervisor.service
+  notify:
+    - Restart Supervisor
+  when: ansible_distribution_release != 'trusty'
+
