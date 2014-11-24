@@ -1,5 +1,6 @@
 ---
 apache_mirror: http://apache.mirrors.tds.net
+nimbus_thrift_port: 6627
 storm_local_dir: /var/storm
 storm_nimbus_enabled: false
 storm_supervisor_enabled: false
