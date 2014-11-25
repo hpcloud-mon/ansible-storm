@@ -10,3 +10,9 @@
 - name: Restart UI
   service: name=storm-ui state=restarted enabled=yes
   when: storm_nimbus_enabled
+
+- name: wait for nimbus port
+  wait_for: port={{nimbus_thrift_port}} state=started
+
+- name: wait for ui port
+  wait_for: port={{storm_ui_port}} state=started
