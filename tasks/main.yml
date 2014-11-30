@@ -11,7 +11,7 @@
   file: path={{storm_root_dir}} state=directory owner={{storm_user}} group={{storm_group}} mode=755
 
 - name: Fetch storm package
-  get_url: dest=/root url="{{apache_mirror}}/incubator/storm/apache-storm-{{storm_version}}/apache-storm-{{storm_version}}.tar.gz"
+  get_url: dest=/root/apache-storm-{{storm_version}}.tar.gz url="{{apache_mirror}}/incubator/storm/apache-storm-{{storm_version}}/apache-storm-{{storm_version}}.tar.gz"
 
 - name: Uncompress the storm tar
   unarchive: copy=no creates={{storm_root_dir}}/apache-storm-{{storm_version}} dest={{storm_root_dir}} src=/root/apache-storm-{{storm_version}}.tar.gz
