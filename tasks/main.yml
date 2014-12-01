@@ -22,8 +22,16 @@
 - name: Create Storm log and local directories
   file: path={{item}} state=directory owner={{storm_user}} group={{storm_group}} mode=775
   with_items:
-    - "{{storm_root_dir}}/current/logs"
     - "{{storm_local_dir}}"
+    - "/var/log/storm"
+
+- name: Check if Storm log directory already exists
+  stat: path={{storm_root_dir}}/current/logs get_md5=False
+  register: storm_logs_dir
+
+- name: Create Storm log symlink to /var/log/storm if directory doesn't exist
+  file: path={{storm_root_dir}}/current/logs state=link src=/var/log/storm
+  when: not storm_logs_dir.stat.exists
 
 - name: Configure storm.yaml
   template: dest="{{storm_root_dir}}/apache-storm-{{storm_version}}/conf/storm.yaml" owner={{storm_user}} group={{storm_group}} mode=644 src=storm.yaml.j2
@@ -32,7 +40,7 @@
     - Restart Supervisor
     - Restart UI
 
-- include: nimbus.yml tags=storm_nimbus 
+- include: nimbus.yml tags=storm_nimbus
   when: storm_nimbus_enabled
 
 - include: supervisor.yml tags=storm_supervisor
