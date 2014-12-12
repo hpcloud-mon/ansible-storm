@@ -1,3 +1,4 @@
+---
 # Configure and start nimbus as well as the UI
 
 - name: Setup nimbus upstart script

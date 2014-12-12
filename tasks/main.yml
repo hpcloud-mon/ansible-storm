@@ -2,8 +2,9 @@
 - name: Install OpenJDK
   apt: name=openjdk-7-jre-headless state=present
 
-- name: setup group
+- name: Setup group
   group: name={{storm_group}} system=yes
+
 - name: Setup user
   user: name={{storm_user}} system=yes group={{storm_group}}
 
