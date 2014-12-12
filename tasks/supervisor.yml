@@ -1,3 +1,4 @@
+---
 - name: Setup supervisor upstart script
   copy: dest={{supervisor_upstart_conf}} owner=root group=root mode=644 src=storm-supervisor.conf
   notify:
