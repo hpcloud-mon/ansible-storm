@@ -1,30 +1,43 @@
 ---
 # Configure and start nimbus as well as the UI
+- name: Configure storm.yaml
+  template: dest="{{storm_root_dir}}/apache-storm-{{storm_version}}/conf/storm.yaml" owner={{storm_user}} group={{storm_group}} mode=644 src=storm.yaml.j2
+  notify:
+    - Restart Nimbus
+    - Restart UI
 
 - name: Setup nimbus upstart script
   copy: dest={{nimbus_upstart_conf}} owner=root group=root mode=644 src=storm-nimbus.conf
   notify:
     - Restart Nimbus
-    - wait for nimbus port
   when: ansible_distribution_release == 'trusty'
 
 - name: Setup nimbus systemd script
   copy: dest={{nimbus_systemd_service}} owner=root group=root mode=644 src=storm-nimbus.service
   notify:
     - Restart Nimbus
-    - wait for nimbus port
   when: ansible_distribution_release != 'trusty'
 
 - name: Setup UI upstart script
   copy: dest={{stormui_upstart_conf}} owner=root group=root mode=644 src=storm-ui.conf
   notify:
     - Restart UI
-    - wait for ui port
   when: ansible_distribution_release == 'trusty'
 
 - name: Setup UI systemd script
   copy: dest={{stormui_systemd_service}} owner=root group=root mode=644 src=storm-ui.service
   notify:
     - Restart UI
-    - wait for ui port
   when: ansible_distribution_release != 'trusty'
+
+- meta: flush_handlers
+
+- name: Enable Nimbus
+  service: name=storm-nimbus state=started enabled=yes
+
+- name: wait for nimbus port
+  wait_for: port={{nimbus_thrift_port}} state=started timeout=30
+
+- name: wait for ui port
+  wait_for: port={{storm_ui_port}} state=started timeout=5
+

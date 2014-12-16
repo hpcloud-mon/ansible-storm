@@ -1,4 +1,9 @@
 ---
+- name: Configure storm.yaml
+  template: dest="{{storm_root_dir}}/apache-storm-{{storm_version}}/conf/storm.yaml" owner={{storm_user}} group={{storm_group}} mode=644 src=storm.yaml.j2
+  notify:
+    - Restart Supervisor
+
 - name: Setup supervisor upstart script
   copy: dest={{supervisor_upstart_conf}} owner=root group=root mode=644 src=storm-supervisor.conf
   notify:
@@ -11,3 +16,7 @@
     - Restart Supervisor
   when: ansible_distribution_release != 'trusty'
 
+- meta: flush_handlers
+
+- name: Enable Storm Supervisor
+  service: name=storm-supervisor state=started enabled=yes

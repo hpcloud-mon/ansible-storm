@@ -34,13 +34,6 @@
   file: path={{storm_root_dir}}/current/logs state=link src=/var/log/storm
   when: not storm_logs_dir.stat.exists
 
-- name: Configure storm.yaml
-  template: dest="{{storm_root_dir}}/apache-storm-{{storm_version}}/conf/storm.yaml" owner={{storm_user}} group={{storm_group}} mode=644 src=storm.yaml.j2
-  notify:
-    - Restart Nimbus
-    - Restart Supervisor
-    - Restart UI
-
 - include: nimbus.yml tags=storm_nimbus
   when: storm_nimbus_enabled
 
