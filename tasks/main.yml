@@ -30,9 +30,17 @@
   stat: path={{storm_root_dir}}/current/logs get_md5=False
   register: storm_logs_dir
 
-- name: Create Storm log symlink to /var/log/storm if directory doesn't exist
+- name: Create Storm log symlink to /var/log/storm if directory does not exist
   file: path={{storm_root_dir}}/current/logs state=link src=/var/log/storm
   when: not storm_logs_dir.stat.exists
+
+- name: Detect if this is a systemd based system
+  command: cat /proc/1/comm
+  register: init
+- set_fact: use_systemd=True
+  when: init.stdout == 'systemd'
+- set_fact: use_systemd=False
+  when: init.stdout != 'systemd'
 
 - include: nimbus.yml tags=storm_nimbus
   when: storm_nimbus_enabled
