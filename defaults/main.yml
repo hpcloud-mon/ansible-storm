@@ -29,3 +29,5 @@ storm_zookeeper_extra_config:
     storm.zookeeper.retry.times: 60
     storm.zookeeper.root: "/storm"
     storm.zookeeper.session.timeout: 3000
+
+skip_install: False

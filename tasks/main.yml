@@ -1,6 +1,7 @@
 ---
 - name: Install OpenJDK
   apt: name=openjdk-7-jre-headless state=present
+  when: not skip_install
 
 - name: Setup group
   group: name={{storm_group}} system=yes
@@ -13,6 +14,7 @@
 
 - name: Fetch storm package
   get_url: dest=/root/apache-storm-{{storm_version}}.tar.gz url="{{apache_mirror}}/storm/apache-storm-{{storm_version}}/apache-storm-{{storm_version}}.tar.gz"
+  when: not skip_install
 
 - name: Uncompress the storm tar
   unarchive: copy=no creates={{storm_root_dir}}/apache-storm-{{storm_version}} dest={{storm_root_dir}} src=/root/apache-storm-{{storm_version}}.tar.gz
