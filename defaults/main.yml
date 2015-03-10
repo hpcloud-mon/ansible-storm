@@ -31,3 +31,4 @@ storm_zookeeper_extra_config:
     storm.zookeeper.session.timeout: 3000
 
 skip_install: False
+verify: True

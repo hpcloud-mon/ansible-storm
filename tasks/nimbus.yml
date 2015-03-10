@@ -43,7 +43,9 @@
 
 - name: wait for nimbus port
   wait_for: port={{nimbus_thrift_port}} state=started timeout=30
+  when: verify
 
 - name: wait for ui port
   wait_for: port={{storm_ui_port}} state=started timeout=5
+  when: verify
 
