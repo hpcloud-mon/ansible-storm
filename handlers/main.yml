@@ -7,6 +7,10 @@
   service: name=storm-supervisor state=restarted
   when: storm_supervisor_enabled
 
+- name: Restart Logviewer
+  service: name=storm-logviewer state=restarted
+  when: storm_supervisor_enabled
+
 - name: Restart UI
   service: name=storm-ui state=restarted
   when: storm_nimbus_enabled

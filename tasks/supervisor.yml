@@ -23,3 +23,6 @@
 
 - name: Enable Storm Supervisor
   service: name=storm-supervisor state=started enabled=yes
+
+- name: Enable Storm Logviewer
+  service: name=storm-logviewer state=started enabled=yes
