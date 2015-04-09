@@ -29,7 +29,7 @@
     - "/var/log/storm"
     
 - name: Copy custom logback cluster.xml over the default one, if present
-  shell: dest={{storm_root_dir}}/current/logback/cluster.xml src={{storm_cluster_logback_xml}}"
+  shell: dest={{storm_root_dir}}/current/logback/cluster.xml src={{storm_cluster_logback_xml}}
   when: storm_cluster_logback_xml is defined
 
 - name: Check if Storm log directory already exists
