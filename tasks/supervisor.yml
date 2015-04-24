@@ -4,14 +4,26 @@
   notify:
     - Restart Supervisor
 
-- name: Setup supervisor upstart script
+- name: Setup Storm supervisor upstart script
   copy: dest={{supervisor_upstart_conf}} owner=root group=root mode=644 src=storm-supervisor.conf
   notify:
     - Restart Supervisor
   when: not use_systemd
 
-- name: Setup supervisor systemd script
+- name: Setup Storm supervisor systemd script
   copy: dest={{supervisor_systemd_service}} owner=root group=root mode=644 src=storm-supervisor.service
+  notify:
+    - Restart Supervisor
+  when: use_systemd
+
+- name: Setup Storm Logviewer upstart script
+  copy: dest={{logviewer_upstart_conf}} owner=root group=root mode=644 src=storm-logviewer.conf
+  notify:
+    - Restart Supervisor
+  when: not use_systemd
+
+- name: Setup Storm Logviewer systemd script
+  copy: dest={{logviewer_systemd_service}} owner=root group=root mode=644 src=storm-logviewer.service
   notify:
     - Restart Supervisor
   when: use_systemd
@@ -23,3 +35,6 @@
 
 - name: Enable Storm Supervisor
   service: name=storm-supervisor state=started enabled=yes
+
+- name: Enable Storm Logviewer
+  service: name=storm-logviewer state=started enabled=yes
