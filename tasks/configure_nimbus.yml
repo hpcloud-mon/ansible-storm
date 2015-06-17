@@ -1,5 +1,4 @@
 ---
-# Configure and start nimbus as well as the UI
 - name: Configure storm.yaml
   template: dest="{{storm_root_dir}}/apache-storm-{{storm_version}}/conf/storm.yaml" owner={{storm_user}} group={{storm_group}} mode=644 src=storm.yaml.j2
   notify:
@@ -34,18 +33,3 @@
   when: use_systemd
 
 - meta: flush_handlers
-
-- name: Enable Nimbus
-  service: name=storm-nimbus state=started enabled=yes
-
-- name: Enable Storm UI
-  service: name=storm-ui state=started enabled=yes
-
-- name: wait for nimbus port
-  wait_for: port={{nimbus_thrift_port}} state=started timeout=30
-  when: verify
-
-- name: wait for ui port
-  wait_for: port={{storm_ui_port}} state=started timeout=5
-  when: verify
-

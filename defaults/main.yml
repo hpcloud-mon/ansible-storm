@@ -31,5 +31,6 @@ storm_zookeeper_extra_config:
     storm.zookeeper.root: "/storm"
     storm.zookeeper.session.timeout: 3000
 
+run_mode: Deploy
 skip_install: False
 verify: True
