@@ -13,15 +13,11 @@
   file: path={{storm_root_dir}} state=directory owner={{storm_user}} group={{storm_group}} mode=755
 
 - name: Fetch storm package
-  get_url: dest=/root url="{{apache_mirror}}/storm/apache-storm-{{storm_version}}/apache-storm-{{storm_version}}.tar.gz" timeout=30
-  register: get_url_result
-  until: "'OK' in get_url_result.msg"
-  retries: 5
-  delay: 1
+  get_url: dest={{ storm_tarball_location }}/{{ storm_tarball_name }} url={{apache_mirror}}/storm/apache-storm-{{storm_version}}/{{ storm_tarball_name }}
   when: not skip_install
 
 - name: Uncompress the storm tar
-  unarchive: copy=no creates={{storm_root_dir}}/apache-storm-{{storm_version}} dest={{storm_root_dir}} src=/root/apache-storm-{{storm_version}}.tar.gz
+  unarchive: copy=no creates={{storm_root_dir}}/apache-storm-{{storm_version}} dest={{storm_root_dir}} src="{{ storm_tarball_location }}/{{ storm_tarball_name }}"
 
 - name: Link current version
   file: path={{storm_root_dir}}/current state=link src={{storm_root_dir}}/apache-storm-{{storm_version}}
