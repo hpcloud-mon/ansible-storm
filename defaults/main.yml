@@ -30,6 +30,8 @@ storm_zookeeper_extra_config:
     storm.zookeeper.retry.times: 60
     storm.zookeeper.root: "/storm"
     storm.zookeeper.session.timeout: 3000
+storm_tarball_location: /root
+storm_tarball_name: apache-storm-{{storm_version}}.tar.gz
 
 skip_install: False
 verify: True
