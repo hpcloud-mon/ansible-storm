@@ -22,13 +22,13 @@
   copy: dest={{stormui_upstart_conf}} owner=root group=root mode=644 src=storm-ui.conf
   notify:
     - Restart UI
-  when: not use_systemd
+  when: storm_ui_enabled and not use_systemd
 
 - name: Setup Storm UI systemd script
   copy: dest={{stormui_systemd_service}} owner=root group=root mode=644 src=storm-ui.service
   notify:
     - Restart UI
-  when: use_systemd
+  when: storm_ui_enabled and use_systemd
 
 - command: systemctl daemon-reload
   when: use_systemd
@@ -40,6 +40,7 @@
 
 - name: Enable Storm UI
   service: name=storm-ui state=started enabled=yes
+  when: storm_ui_enabled
 
 - name: wait for nimbus port
   wait_for: port={{nimbus_thrift_port}} state=started timeout=60
@@ -47,5 +48,5 @@
 
 - name: wait for ui port
   wait_for: port={{storm_ui_port}} state=started timeout=5
-  when: verify
+  when: storm_ui_enabled and verify
 
