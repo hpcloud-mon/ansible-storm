@@ -3,8 +3,4 @@
   apt: name=openjdk-7-jre-headless state=present
 
 - name: Fetch storm package
-  get_url: dest=/root url="{{apache_mirror}}/storm/apache-storm-{{storm_version}}/apache-storm-{{storm_version}}.tar.gz" timeout=30
-  register: get_url_result
-  until: "'OK' in get_url_result.msg"
-  retries: 5
-  delay: 1
+  get_url: dest={{ storm_tarball_location }}/{{ storm_tarball_name }} url={{apache_mirror}}/storm/apache-storm-{{storm_version}}/{{ storm_tarball_name }}

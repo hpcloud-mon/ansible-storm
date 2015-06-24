@@ -6,7 +6,7 @@ By default neither nimbus nor supervisors/logviewer will be enabled, set one or 
 - storm_nimbus_enabled: true
 - storm_supervisor_enabled: true
 
-The UI is installed on the same box as nimbus. Typically there is a single nimbus server and multiple supervisors. Storm-logviewer is installed on the same box as the supervisors.
+If `storm_ui_enabled` is set to True the UI is installed on the same box as nimbus. Typically there is a single nimbus server and multiple supervisors. Storm-logviewer is installed on the same box as the supervisors.
 
 The variable are required for proper setup
 - nimbus_host

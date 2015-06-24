@@ -16,5 +16,4 @@
 
 - name: Restart UI
   service: name=storm-ui state=restarted
-  when: storm_nimbus_enabled
-  when: run_mode == 'Deploy'
+  when: storm_ui_enabled and run_mode == 'Deploy'
