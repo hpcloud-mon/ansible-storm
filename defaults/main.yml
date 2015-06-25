@@ -17,6 +17,7 @@ storm_topology_extra_config:
 storm_transactional_extra_config:
     transactional.zookeeper.port: "{{ storm_zookeeper_port }}"
     transactional.zookeeper.root: "/storm-transactional"
+storm_logviewer_enabled: false  # logviewer is used by the UI
 storm_ui_enabled: false
 storm_ui_port: 8088
 storm_ui_extra_config:

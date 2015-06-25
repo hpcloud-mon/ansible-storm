@@ -20,15 +20,22 @@
   copy: dest={{logviewer_upstart_conf}} owner=root group=root mode=644 src=storm-logviewer.conf
   notify:
     - Restart Supervisor
-  when: not use_systemd
+  when: storm_logviewer_enabled and not use_systemd
 
 - name: Setup Storm Logviewer systemd script
   copy: dest={{logviewer_systemd_service}} owner=root group=root mode=644 src=storm-logviewer.service
   notify:
     - Restart Supervisor
-  when: use_systemd
+  when: storm_logviewer_enabled and use_systemd
 
 - command: systemctl daemon-reload
   when: use_systemd
 
 - meta: flush_handlers
+
+- name: Enable Storm Supervisor
+  service: name=storm-supervisor state=started enabled=yes
+
+- name: Enable Storm Logviewer
+  service: name=storm-logviewer state=started enabled=yes
+  when: storm_logviewer_enabled
