@@ -1,6 +1,6 @@
 ---
-- name: Enable and Start Storm Supervisor
+- name: Stop Supervisor
   service: name=storm-supervisor state=stopped enabled=yes
 
-- name: Enable and Start Storm Logviewer
+- name: Stop Logviewer
   service: name=storm-logviewer state=stopped enabled=yes
