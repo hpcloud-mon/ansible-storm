@@ -2,15 +2,18 @@
 - name: Restart Nimbus
   service: name=storm-nimbus state=restarted
   when: storm_nimbus_enabled
+  when: run_mode == 'Deploy'
 
 - name: Restart Supervisor
   service: name=storm-supervisor state=restarted
   when: storm_supervisor_enabled
+  when: run_mode == 'Deploy'
 
 - name: Restart Logviewer
   service: name=storm-logviewer state=restarted
   when: storm_supervisor_enabled
+  when: run_mode == 'Deploy'
 
 - name: Restart UI
   service: name=storm-ui state=restarted
-  when: storm_ui_enabled
+  when: storm_ui_enabled and run_mode == 'Deploy'

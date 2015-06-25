@@ -34,5 +34,6 @@ storm_zookeeper_extra_config:
 storm_tarball_location: /root
 storm_tarball_name: apache-storm-{{storm_version}}.tar.gz
 
+run_mode: Deploy
 skip_install: False
 verify: True

@@ -1,0 +1,15 @@
+---
+- name: Enable and Start Nimbus
+  service: name=storm-nimbus state=started enabled=yes
+
+- name: Enable and Start Storm UI
+  service: name=storm-ui state=started enabled=yes
+  when: storm_ui_enabled
+
+- name: wait for nimbus port
+  wait_for: port={{nimbus_thrift_port}} state=started timeout=60
+  when: verify
+
+- name: wait for ui port
+  wait_for: port={{storm_ui_port}} state=started timeout=5
+  when: storm_ui_enabled and verify

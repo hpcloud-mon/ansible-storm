@@ -1,0 +1,6 @@
+---
+- include: start_nimbus.yml tags=storm_nimbus
+  when: storm_nimbus_enabled
+
+- include: start_supervisor.yml tags=storm_supervisor
+  when: storm_supervisor_enabled

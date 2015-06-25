@@ -1,0 +1,6 @@
+---
+- name: Install OpenJDK
+  apt: name=openjdk-7-jre-headless state=present
+
+- name: Fetch storm package
+  get_url: dest={{ storm_tarball_location }}/{{ storm_tarball_name }} url={{apache_mirror}}/storm/apache-storm-{{storm_version}}/{{ storm_tarball_name }}
