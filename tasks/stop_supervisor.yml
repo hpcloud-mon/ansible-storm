@@ -4,3 +4,4 @@
 
 - name: Stop Logviewer
   service: name=storm-logviewer state=stopped enabled=yes
+  when: storm_logviewer_enabled
