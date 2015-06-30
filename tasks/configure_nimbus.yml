@@ -31,5 +31,3 @@
 
 - command: systemctl daemon-reload
   when: use_systemd
-
-- meta: flush_handlers

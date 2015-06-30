@@ -51,3 +51,5 @@
 
 - include: configure_supervisor.yml tags=storm_supervisor
   when: storm_supervisor_enabled
+
+- meta: flush_handlers
