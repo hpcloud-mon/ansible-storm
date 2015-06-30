@@ -40,6 +40,12 @@
 - set_fact: use_systemd=False
   when: init.stdout != 'systemd'
 
+- name: Configure cluster.xml for setting log level
+  template: dest="{{storm_root_dir}}/apache-storm-{{storm_version}}/logback/cluster.xml" owner={{storm_user}} group={{storm_group}} mode=644 src=cluster.xml.j2
+  notify:
+    - Restart Nimbus
+    - Restart Supervisor
+
 - include: configure_nimbus.yml tags=storm_nimbus
   when: storm_nimbus_enabled
 
