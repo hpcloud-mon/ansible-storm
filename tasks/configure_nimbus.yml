@@ -32,9 +32,4 @@
 - command: systemctl daemon-reload
   when: use_systemd
 
-- name: Configure cluster.xml for setting log level
-  template: dest="{{storm_root_dir}}/apache-storm-{{storm_version}}/logback/cluster.xml" owner={{storm_user}} group={{storm_group}} mode=644 src=cluster.xml.j2
-  notify:
-    - Restart Nimbus
-
 - meta: flush_handlers
