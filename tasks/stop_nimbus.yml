@@ -4,3 +4,5 @@
 
 - name: Stop Storm UI
   service: name=storm-ui state=stopped enabled=yes
+  when: storm_ui_enabled
+
