@@ -15,6 +15,7 @@ The variable are required for proper setup
 
 ## Optional
 - monasca_log_level - Log level to be used for storm logs. Defaults to WARN
+- monasca_wait_for_period - The time in seconds for how long to wait for the nimbus port and the ui port to be available after starting them. Default is 60 seconds.
 - run_mode: One of Deploy, Stop, Install, Configure or Start. The default is Deploy which will do Install, Configure, then Start.
 
 ##License

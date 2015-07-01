@@ -35,7 +35,8 @@ storm_zookeeper_extra_config:
 storm_tarball_location: /root
 storm_tarball_name: apache-storm-{{storm_version}}.tar.gz
 
+monasca_log_level: WARN
+monasca_wait_for_period: 60
 run_mode: Deploy
 skip_install: False
 verify: True
-monasca_log_level: WARN
