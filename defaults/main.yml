@@ -22,7 +22,7 @@ storm_ui_enabled: false
 storm_ui_port: 8088
 storm_ui_extra_config:
     ui.childopts: "-Xmx768m"
-storm_version: 0.9.2-incubating
+storm_version: 0.9.5
 storm_worker_extra_config:
     worker.childopts: "-Xmx1280m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
 storm_worker_ports: [6701, 6702, 6703, 6704]
