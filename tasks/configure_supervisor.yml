@@ -3,29 +3,34 @@
   template: dest="{{storm_root_dir}}/apache-storm-{{storm_version}}/conf/storm.yaml" owner={{storm_user}} group={{storm_group}} mode=644 src=storm.yaml.j2
   notify:
     - Restart Supervisor
+    - monasca_storm_config_change
 
 - name: Setup Storm supervisor upstart script
   copy: dest={{supervisor_upstart_conf}} owner=root group=root mode=644 src=storm-supervisor.conf
   notify:
     - Restart Supervisor
+    - monasca_storm_config_change
   when: not use_systemd
 
 - name: Setup Storm supervisor systemd script
   copy: dest={{supervisor_systemd_service}} owner=root group=root mode=644 src=storm-supervisor.service
   notify:
     - Restart Supervisor
+    - monasca_storm_config_change
   when: use_systemd
 
 - name: Setup Storm Logviewer upstart script
   copy: dest={{logviewer_upstart_conf}} owner=root group=root mode=644 src=storm-logviewer.conf
   notify:
     - Restart Logviewer
+    - monasca_storm_config_change
   when: storm_logviewer_enabled and not use_systemd
 
 - name: Setup Storm Logviewer systemd script
   copy: dest={{logviewer_systemd_service}} owner=root group=root mode=644 src=storm-logviewer.service
   notify:
     - Restart Logviewer
+    - monasca_storm_config_change
   when: storm_logviewer_enabled and use_systemd
 
 - command: systemctl daemon-reload

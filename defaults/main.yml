@@ -40,3 +40,6 @@ monasca_wait_for_period: 60
 run_mode: Deploy
 skip_install: False
 verify: True
+
+# flag to track restart requirement during reconfigure
+monasca_storm_restart_required: false

@@ -1,7 +1,15 @@
 ---
-- name: Enable and Start Storm Supervisor
+- name: storm-supervisor | restart | restart storm-supervisor
+  service: name=storm-supervisor state=restarted enabled=yes
+  when: monasca_storm_restart_required
+
+- name: storm-supervisor | start | start storm-supervisor
   service: name=storm-supervisor state=started enabled=yes
 
-- name: Enable and Start Storm Logviewer
+- name: storm-logviewer | restart | restart storm-logviewer
+  service: name=storm-logviewer state=restarted enabled=yes
+  when: storm_logviewer_enabled and monasca_storm_restart_required
+
+- name: storm-logviewer | start | start storm-logviewer
   service: name=storm-logviewer state=started enabled=yes
   when: storm_logviewer_enabled

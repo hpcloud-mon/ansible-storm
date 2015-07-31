@@ -14,3 +14,7 @@
 - name: Restart UI
   service: name=storm-ui state=restarted
   when: storm_ui_enabled | bool and run_mode == 'Deploy'
+
+- name: monasca_storm_config_change
+  set_fact:
+    monasca_storm_restart_required: true

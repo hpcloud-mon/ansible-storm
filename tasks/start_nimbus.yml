@@ -1,8 +1,16 @@
 ---
-- name: Enable and Start Nimbus
+- name: storm-nimbus | restart | restart storm-nimbus service
+  service: name=storm-nimbus state=restarted enabled=yes
+  when: monasca_storm_restart_required
+
+- name: storm-nimbus | start | start storm-nimbus service
   service: name=storm-nimbus state=started enabled=yes
 
-- name: Enable and Start Storm UI
+- name: storm-ui | restart | restart storm-ui service
+  service: name=storm-ui state=restarted enabled=yes
+  when: storm_ui_enabled and monasca_storm_restart_required
+
+- name: storm-ui | start | start storm-ui service
   service: name=storm-ui state=started enabled=yes
   when: storm_ui_enabled
 

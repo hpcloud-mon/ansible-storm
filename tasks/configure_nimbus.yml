@@ -4,29 +4,34 @@
   notify:
     - Restart Nimbus
     - Restart UI
+    - monasca_storm_config_change
 
 - name: Setup Storm nimbus upstart script
   copy: dest={{nimbus_upstart_conf}} owner=root group=root mode=644 src=storm-nimbus.conf
   notify:
     - Restart Nimbus
+    - monasca_storm_config_change
   when: not use_systemd
 
 - name: Setup Storm nimbus systemd script
   copy: dest={{nimbus_systemd_service}} owner=root group=root mode=644 src=storm-nimbus.service
   notify:
     - Restart Nimbus
+    - monasca_storm_config_change
   when: use_systemd
 
 - name: Setup Storm UI upstart script
   copy: dest={{stormui_upstart_conf}} owner=root group=root mode=644 src=storm-ui.conf
   notify:
     - Restart UI
+    - monasca_storm_config_change
   when: storm_ui_enabled and not use_systemd
 
 - name: Setup Storm UI systemd script
   copy: dest={{stormui_systemd_service}} owner=root group=root mode=644 src=storm-ui.service
   notify:
     - Restart UI
+    - monasca_storm_config_change
   when: storm_ui_enabled and use_systemd
 
 - command: systemctl daemon-reload
