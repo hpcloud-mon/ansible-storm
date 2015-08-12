@@ -1,4 +1,6 @@
 ---
+# ©Copyright 2015 Hewlett-Packard Development Company, L.P.
+
 - name: Enable and Start Storm Supervisor
   service: name=storm-supervisor state=started enabled=yes
 

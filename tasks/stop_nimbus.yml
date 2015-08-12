@@ -1,4 +1,6 @@
 ---
+# ©Copyright 2015 Hewlett-Packard Development Company, L.P.
+
 - name: Stop Nimbus
   service: name=storm-nimbus state=stopped enabled=yes
 

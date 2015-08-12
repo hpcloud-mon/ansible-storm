@@ -1,4 +1,6 @@
 ---
+# ©Copyright 2015 Hewlett-Packard Development Company, L.P.
+
 nimbus_systemd_service: /etc/systemd/system/storm-nimbus.service
 nimbus_upstart_conf: /etc/init/storm-nimbus.conf
 storm_root_dir: /opt/storm

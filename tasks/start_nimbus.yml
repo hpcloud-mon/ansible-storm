@@ -1,4 +1,6 @@
 ---
+# ©Copyright 2015 Hewlett-Packard Development Company, L.P.
+
 - name: Enable and Start Nimbus
   service: name=storm-nimbus state=started enabled=yes
 

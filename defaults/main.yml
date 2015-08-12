@@ -1,4 +1,6 @@
 ---
+# ©Copyright 2015 Hewlett-Packard Development Company, L.P.
+
 apache_mirror: http://apache.mirrors.tds.net
 nimbus_thrift_port: 6627
 storm_drpc_extra_config:

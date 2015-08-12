@@ -1,4 +1,6 @@
 ---
+# ©Copyright 2015 Hewlett-Packard Development Company, L.P.
+
 - include: start_nimbus.yml tags=storm_nimbus
   when: storm_nimbus_enabled
 

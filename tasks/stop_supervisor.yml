@@ -1,4 +1,6 @@
 ---
+# ©Copyright 2015 Hewlett-Packard Development Company, L.P.
+
 - name: Stop Supervisor
   service: name=storm-supervisor state=stopped enabled=yes
 
