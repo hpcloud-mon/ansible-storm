@@ -20,6 +20,7 @@ storm_transactional_extra_config:
 storm_logviewer_enabled: false  # logviewer is used by the UI
 storm_ui_enabled: false
 storm_ui_port: 8088
+storm_ui_host: 127.0.0.1
 storm_ui_extra_config:
     ui.childopts: "-Xmx768m"
 storm_version: 0.9.5
@@ -32,7 +33,7 @@ storm_zookeeper_extra_config:
     storm.zookeeper.retry.times: 60
     storm.zookeeper.root: "/storm"
     storm.zookeeper.session.timeout: 3000
-storm_tarball_location: /root
+download_tmp_dir: /root
 storm_tarball_name: apache-storm-{{storm_version}}.tar.gz
 
 monasca_log_level: WARN

@@ -41,6 +41,7 @@ nimbus.thrift.port: {{nimbus_thrift_port}}
 {% endif %}
 
 ### ui.* configs are for the master
+ui.host: {{storm_ui_host}}
 ui.port: {{storm_ui_port}}
 {% if storm_ui_extra_config.items is defined %}
 {% for key, value in storm_ui_extra_config|dictsort %}

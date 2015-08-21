@@ -1,0 +1,3 @@
+- name: Install apt OpenJDK
+  apt: name=openjdk-7-jre-headless state=present
+  when: not skip_install
