@@ -23,16 +23,16 @@ storm_ui_port: 8088
 storm_ui_host: 127.0.0.1
 storm_ui_extra_config:
     ui.childopts: "-Xmx768m"
-storm_version: 0.9.5
+storm_version: 0.9.6
 storm_worker_extra_config:
     worker.childopts: "-Xmx1280m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
 storm_worker_ports: [6701, 6702, 6703, 6704]
 storm_zookeeper_extra_config:
     storm.zookeeper.port:  "{{ storm_zookeeper_port }}"
     storm.zookeeper.retry.interval: 5000
-    storm.zookeeper.retry.times: 60
+    storm.zookeeper.retry.times: 29
     storm.zookeeper.root: "/storm"
-    storm.zookeeper.session.timeout: 3000
+    storm.zookeeper.session.timeout: 30000
 download_tmp_dir: /root
 storm_tarball_name: apache-storm-{{storm_version}}.tar.gz
 
